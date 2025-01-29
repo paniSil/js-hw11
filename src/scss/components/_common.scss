@@ -1,0 +1,10 @@
+@use "../presets" as *;
+
+body {
+  margin: 0px;
+  background-color: $color-primary;
+}
+
+.carousel {
+  user-select: none;
+}

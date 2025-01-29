@@ -1,0 +1,58 @@
+@use "../presets" as *;
+
+.controls {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30px;
+  min-height: 30px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 50%;
+  border: 2px solid $color-secondary;
+  background-color: rgba(206, 191, 161, 0);
+  font-size: 1rem;
+  position: absolute;
+  z-index: 20;
+
+  &-prev {
+    left: 8px;
+    bottom: 8px;
+  }
+
+  &-next {
+    right: 8px;
+    bottom: 8px;
+  }
+
+  &-pause {
+    position: absolute;
+    bottom: 50vh;
+    min-width: 120px;
+    min-height: 120px;
+    font-size: 2rem;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+      background-color: rgba(48, 18, 7, 0.8);
+    }
+  }
+
+  &:hover {
+    background-color: rgba(206, 191, 161, 0.2);
+  }
+}
+
+.fas {
+  color: $color-secondary;
+}
