@@ -1,3 +1,5 @@
+/* Carousel class - general */
+
 class Carousel {
     constructor(params) {
         const settings = { ...{ containerId: '#carousel', slideId: '.item', interval: 3000, isPlaying: true }, ...params };
@@ -8,6 +10,7 @@ class Carousel {
         this.isPlaying = settings.isPlaying;
     }
 
+    /* Variables for css and listeners */
     _initProps() {
         this.slidesItems_COUNT = this.slidesItems.length;
 
@@ -27,6 +30,7 @@ class Carousel {
         this.endPosX = 0;
     }
 
+    /* Creation of control buttons in DOM */
     _initControls() {
         const controls = document.createElement('div');
         const PAUSE = `
@@ -61,6 +65,7 @@ class Carousel {
         this.isPlaying ? this._pauseVisible() : this._playVisible();
     }
 
+    /* Creation of indicator icons in DOM */
     _initIndicators() {
         const indicators = document.createElement('div');
 
@@ -78,6 +83,7 @@ class Carousel {
         this.indicatorItems = document.querySelectorAll('.indicator');
     }
 
+    /* Listeners block for buttons usage */
     _initListeners() {
         this.pauseBtn.addEventListener('click', this.pausePlay.bind(this));
         this.prevBtn.addEventListener('click', this.prev.bind(this));
@@ -85,9 +91,10 @@ class Carousel {
         this.indicatorsContainer.addEventListener('click', this._indicator.bind(this));
         this.container.addEventListener('mouseenter', this.pause.bind(this));
         this.container.addEventListener('mouseleave', this.play.bind(this));
-        document.addEventListener('keydown', this.pressKey.bind(this));
+        document.addEventListener('keydown', this._pressKey.bind(this));
     }
 
+    /* Private fn, going to the cartain slide */
     _goToNth(n) {
         this.slidesItems[this.currentSlide].classList.toggle('active');
         this.indicatorItems[this.currentSlide].classList.toggle('active')
@@ -96,20 +103,24 @@ class Carousel {
         this.indicatorItems[this.currentSlide].classList.toggle('active');
     }
 
+    /* Private fn, going to the next slide */
     _goToNext() {
         this._goToNth(this.currentSlide + 1);
     }
 
+    /* Private fn, going to the previous slide */
     _goToPrev() {
         this._goToNth(this.currentSlide - 1);
     }
 
+    /* Private fn, tick - automated slide playing with the timed interval*/
     _tick() {
         if (!this.isPlaying) return;
         if (this.timerId) return;
         this.timerId = setInterval(() => this._goToNext(), this.TIMER_INTERVAL);
     }
 
+    /* Private fns, for toggling pause icon visability */
     _pauseVisible(isVisible = true) {
         this.pauseIcon.style.opacity = isVisible ? 1 : 0;
         this.playIcon.style.opacity = isVisible ? 0 : 1;
@@ -120,6 +131,7 @@ class Carousel {
         this._pauseVisible(false);
     }
 
+    /* public fn, pause */
     pause() {
         if (!this.isPlaying) return;
         this.pauseBtn.innerHTML = this.FA_PLAY;
@@ -128,6 +140,7 @@ class Carousel {
         this.timerId = null;
     }
 
+    /* public fn, play */
     play() {
         if (this.isPlaying) return;
         this.pauseBtn.innerHTML = this.FA_PAUSE;
@@ -135,20 +148,24 @@ class Carousel {
         this._tick();
     }
 
+    /* public fn, toggling between pause and play */
     pausePlay() {
         this.isPlaying ? this.pause() : this.play();
     }
 
+    /* public fn, going to previous slide AND pausing*/
     prev() {
         this.pause();
         this._goToPrev();
     }
 
+    /* public fn, going to next slide AND pausing*/
     next() {
         this.pause();
         this._goToNext();
     }
 
+    /* private fn, indicator correlates with the visible slide */
     _indicator(e) {
         const { target } = e; //const target = e.target;
         if (target.classList.contains('indicator')) {
@@ -157,7 +174,8 @@ class Carousel {
         }
     }
 
-    pressKey(e) {
+    /* private fn, pressing certain keys to call fns */
+    _pressKey(e) {
         const code = e.code;
         if (code === this.CODE_ARROW_LEFT) this.prev();
         if (code === this.CODE_ARROW_RIGHT) this.next();
@@ -167,6 +185,7 @@ class Carousel {
         }
     }
 
+    /* public, initialization of carousel fn */
     init() {
         this._initProps();
         this._initControls();
