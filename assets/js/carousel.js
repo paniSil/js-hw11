@@ -31,7 +31,8 @@ class Carousel {
         const controls = document.createElement('div');
         const PAUSE = `
         <div id="pause-btn" class="control control-pause">
-            ${this.isPlaying ? this.FA_PAUSE : this.FA_PLAY}
+            <div id="fa-pause-icon">${this.FA_PAUSE}</div>
+            <div id="fa-play-icon">${this.FA_PLAY}</div>
         </div>
         `
         const PREV = `
@@ -45,14 +46,19 @@ class Carousel {
         </div>
         `
 
-        controls.setAttribute('id', 'controls-container');
         controls.setAttribute('class', 'controls');
         controls.innerHTML = PAUSE + PREV + NEXT;
+
         this.container.append(controls);
 
         this.pauseBtn = this.container.querySelector('#pause-btn');
-        this.prevBtn = this.container.querySelector('#prev-btn');
         this.nextBtn = this.container.querySelector('#next-btn');
+        this.prevBtn = this.container.querySelector('#prev-btn');
+
+        this.pauseIcon = this.container.querySelector('#fa-pause-icon');
+        this.playIcon = this.container.querySelector('#fa-play-icon');
+
+        this.isPlaying ? this._pauseVisible() : this._playVisible();
     }
 
     _initIndicators() {
@@ -102,6 +108,16 @@ class Carousel {
         if (!this.isPlaying) return;
         if (this.timerId) return;
         this.timerId = setInterval(() => this._goToNext(), this.TIMER_INTERVAL);
+    }
+
+    _pauseVisible(isVisible = true) {
+        this.pauseIcon.style.opacity = isVisible ? 1 : 0;
+        this.playIcon.style.opacity = isVisible ? 0 : 1;
+    }
+
+    /* private, _playVisible function */
+    _playVisible() {
+        this._pauseVisible(false);
     }
 
     pause() {

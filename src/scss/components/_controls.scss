@@ -18,10 +18,20 @@
   user-select: none;
   border-radius: 50%;
   border: 2px solid $color-secondary;
-  background-color: rgba(206, 191, 161, 0);
+
   font-size: 1rem;
   position: absolute;
   z-index: 20;
+
+  .fa-angle-left,
+  .fa-angle-right {
+    background-color: rgba(206, 191, 161, 0);
+  }
+
+  .fa-angle-left:hover,
+  .fa-angle-right:hover {
+    background-color: rgba(206, 191, 161, 0.2);
+  }
 
   &-prev {
     left: 8px;
@@ -33,26 +43,29 @@
     bottom: 8px;
   }
 
-  &-pause {
-    position: absolute;
-    bottom: 50vh;
-    min-width: 120px;
-    min-height: 120px;
-    font-size: 2rem;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-
-    &:hover {
-      opacity: 1;
-      background-color: rgba(48, 18, 7, 0.8);
-    }
-  }
-
   &:hover {
     background-color: rgba(206, 191, 161, 0.2);
+  }
+
+  &-pause {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1rem;
+    transition: opacity 0.5s ease-in-out;
+    border-color: $color-accent;
+
+    &:hover {
+      background-color: rgba(240, 180, 29, 0.5);
+    }
   }
 }
 
 .fas {
   color: $color-secondary;
+}
+
+.fa-pause-circle,
+.fa-play-circle {
+  color: $color-accent;
 }

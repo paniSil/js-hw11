@@ -182,10 +182,17 @@ body{
           user-select:none;
   border-radius:50%;
   border:2px solid #cebfa2;
-  background-color:rgba(206, 191, 161, 0);
   font-size:1rem;
   position:absolute;
   z-index:20;
+}
+.control .fa-angle-left,
+.control .fa-angle-right{
+  background-color:rgba(206, 191, 161, 0);
+}
+.control .fa-angle-left:hover,
+.control .fa-angle-right:hover{
+  background-color:rgba(206, 191, 161, 0.2);
 }
 .control-prev{
   left:8px;
@@ -195,26 +202,29 @@ body{
   right:8px;
   bottom:8px;
 }
-.control-pause{
-  position:absolute;
-  bottom:50vh;
-  min-width:120px;
-  min-height:120px;
-  font-size:2rem;
-  opacity:0;
-  -webkit-transition:opacity 0.5s ease-in-out;
-  transition:opacity 0.5s ease-in-out;
-}
-.control-pause:hover{
-  opacity:1;
-  background-color:rgba(48, 18, 7, 0.8);
-}
 .control:hover{
   background-color:rgba(206, 191, 161, 0.2);
+}
+.control-pause{
+  position:absolute;
+  top:8px;
+  right:8px;
+  font-size:1rem;
+  -webkit-transition:opacity 0.5s ease-in-out;
+  transition:opacity 0.5s ease-in-out;
+  border-color:#f0b41d;
+}
+.control-pause:hover{
+  background-color:rgba(240, 180, 29, 0.5);
 }
 
 .fas{
   color:#cebfa2;
+}
+
+.fa-pause-circle,
+.fa-play-circle{
+  color:#f0b41d;
 }
 
 @media (max-width: 1024px){
