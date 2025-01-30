@@ -226,8 +226,8 @@ body{
 .fa-play-circle{
   color:#f0b41d;
   position:absolute;
-  top:8px;
-  right:8px;
+  top:7px;
+  right:7px;
 }
 
 @media (max-width: 1024px){
