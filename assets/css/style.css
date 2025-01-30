@@ -225,6 +225,9 @@ body{
 .fa-pause-circle,
 .fa-play-circle{
   color:#f0b41d;
+  position:absolute;
+  top:8px;
+  right:8px;
 }
 
 @media (max-width: 1024px){
@@ -254,8 +257,10 @@ body{
   }
   .slide__text{
     width:60%;
+    padding:20px 40px 20px 20px;
   }
   .slide__action{
     width:60%;
+    padding:20px 40px 20px 20px;
   }
 }
